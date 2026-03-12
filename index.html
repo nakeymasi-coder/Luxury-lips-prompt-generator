@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlamorousGrammyGlowUp – Luxury Lips Prompt Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050507;
+      --bg2:#0f1020;
+      --panel:#101019;
+      --panel2:#151522;
+      --line:rgba(255,255,255,.08);
+      --text:#fff;
+      --muted:#b7b7c9;
+      --soft:#8787a2;
+      --blue:#4F46E5;
+      --gold:#F59E0B;
+      --success:#22c55e;
+      --danger:#ef4444;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      padding:0;
+      background:radial-gradient(circle at top,#1c1d37 0%,#0a0a12 34%,#050507 100%);
+      color:var(--text);
+      font-family:Montserrat,sans-serif;
+    }
+    button,input,select,textarea{font:inherit}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      padding:18px 22px;
+      border-bottom:1px solid var(--line);
+      background:rgba(5,5,7,.88);
+      backdrop-filter:blur(12px);
+    }
+    .brand{
+      font-family:'Playfair Display',serif;
+      font-size:30px;
+      color:var(--gold);
+      line-height:1;
+    }
+    .sub{
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:1.8px;
+      margin-top:4px;
+    }
+    .tag{
+      font-size:12px;
+      color:var(--blue);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1.8px;
+    }
+    .app{
+      max-width:1480px;
+      margin:0 auto;
+      padding:24px;
+      display:grid;
+      grid-template-columns:460px 1fr;
+      gap:24px;
+    }
+    .panel,.preview-wrap{
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+    }
+    .panel{padding:22px}
+    .preview-wrap{padding:22px}
+    .section-title{
+      margin:0 0 12px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1.8px;
+      text-transform:uppercase;
+      color:var(--gold);
+    }
+    .intro-card{
+      padding:16px;
+      border:1px solid rgba(245,158,11,.16);
+      background:linear-gradient(180deg,rgba(245,158,11,.08),rgba(79,70,229,.06));
+      border-radius:18px;
+      margin-bottom:16px;
+    }
+    .intro-card h2{
+      margin:0 0 8px;
+      font-size:24px;
+      font-family:'Playfair Display',serif;
+    }
+    .intro-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .tutorial-card{
+      padding:18px;
+      border:1px solid rgba(79,70,229,.18);
+      background:
+        radial-gradient(circle at top right, rgba(245,158,11,.12), transparent 30%),
+        linear-gradient(180deg,rgba(79,70,229,.10),rgba(245,158,11,.05));
+      border-radius:20px;
+      margin-bottom:16px;
+    }
+    .tutorial-card h3{
+      margin:0 0 12px;
+      font-size:21px;
+      font-family:'Playfair Display',serif;
+    }
+    .tutorial-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .step-card{
+      background:#11131b;
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:16px;
+      padding:12px;
+    }
+    .step-num{
+      width:30px;
+      height:30px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      font-weight:800;
+      background:linear-gradient(90deg,var(--blue),var(--gold));
+      margin-bottom:10px;
+    }
+    .step-card h4{
+      margin:0 0 6px;
+      font-size:13px;
+      color:#fff;
+    }
+    .step-card p{
+      margin:0;
+      font-size:12px;
+      line-height:1.6;
+      color:var(--soft);
+    }
+    .tool-list{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .tool-item{
+      background:#11131b;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:12px;
+    }
+    .tool-item strong{
+      display:block;
+      color:#fff;
+      margin-bottom:5px;
+      font-size:13px;
+    }
+    .tool-item span{
+      color:var(--soft);
+      font-size:12px;
+      line-height:1.6;
+      display:block;
+    }
+    .helper-card{
+      margin-top:14px;
+      background:#0e1017;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:14px;
+    }
+    .helper-card p{
+      margin:0 0 10px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.1px;
+      color:var(--muted);
+      font-weight:800;
+    }
+    .helper-box{
+      min-height:90px;
+      background:#151826;
+      border:1px solid rgba(255,255,255,.07);
+      color:#ececf8;
+      border-radius:14px;
+      padding:12px;
+      white-space:pre-wrap;
+      line-height:1.6;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .style-bar,.chip-row,.mini-bar,.quickfill-bar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .style-bar{margin-bottom:14px}
+    .style-btn,.chip,.mini-btn,.quickfill-btn{
+      background:#11131b;
+      border:1px solid rgba(255,255,255,.1);
+      color:#d9d9eb;
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      cursor:pointer;
+    }
+    .style-btn.active{
+      border-color:rgba(245,158,11,.5);
+      box-shadow:inset 0 0 0 1px rgba(245,158,11,.25);
+      color:#fff;
+    }
+    .chip{cursor:default}
+
+    .preset-card-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:14px;
+    }
+    .preset-card{
+      position:relative;
+      background:
+        radial-gradient(circle at top right, rgba(245,158,11,.16), transparent 30%),
+        linear-gradient(180deg,#17192a,#10111a);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:14px;
+      cursor:pointer;
+      transition:.18s transform,.18s border-color,.18s box-shadow;
+    }
+    .preset-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(245,158,11,.35);
+      box-shadow:0 10px 25px rgba(0,0,0,.25);
+    }
+    .preset-card h4{
+      margin:0 0 6px;
+      font-size:15px;
+      color:#fff;
+      font-family:'Playfair Display',serif;
+    }
+    .preset-card p{
+      margin:0;
+      color:var(--soft);
+      font-size:12px;
+      line-height:1.55;
+    }
+    .preset-badge{
+      display:inline-block;
+      margin-bottom:10px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(79,70,229,.18);
+      border:1px solid rgba(79,70,229,.35);
+      color:#c9c6ff;
+      font-size:10px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .grid-2,.btn-row,.btn-row-3{
+      display:grid;
+      gap:12px;
+    }
+    .grid-2{grid-template-columns:1fr 1fr}
+    .btn-row{grid-template-columns:1fr 1fr}
+    .btn-row-3{grid-template-columns:1fr 1fr 1fr}
+    .field{margin-bottom:12px}
+    .field label{
+      display:block;
+      margin:0 0 7px;
+      font-size:12px;
+      color:var(--muted);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    select,input[type='text'],textarea{
+      width:100%;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.1);
+      background:var(--panel2);
+      color:#fff;
+      outline:none;
+      min-height:50px;
+    }
+    select:focus,input[type='text']:focus,textarea:focus{
+      border-color:rgba(79,70,229,.8);
+      box-shadow:0 0 0 3px rgba(79,70,229,.18);
+    }
+    textarea{
+      min-height:110px;
+      resize:vertical;
+    }
+    .checkline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#0e1017;
+      border:1px solid rgba(255,255,255,.08);
+      padding:12px 14px;
+      border-radius:16px;
+      margin-bottom:12px;
+    }
+    .checkline input{accent-color:var(--gold)}
+    .btn{
+      border:none;
+      border-radius:16px;
+      padding:14px 16px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s transform,.18s opacity;
+      min-height:52px;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn:active{transform:translateY(0)}
+    .btn-primary{
+      background:linear-gradient(90deg,var(--blue),var(--gold));
+      color:#fff;
+    }
+    .btn-secondary{
+      background:#12141d;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .btn-ghost{
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .status{
+      min-height:18px;
+      margin-top:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .status.success{color:var(--success)}
+    .status.error{color:var(--danger)}
+    .preview-box{
+      min-height:470px;
+      max-height:620px;
+      overflow:auto;
+      background:linear-gradient(180deg,#07070c,#0f1018);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px;
+      padding:18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
+    }
+    .empty-state{
+      max-width:660px;
+      margin:auto;
+      text-align:center;
+      padding:34px;
+    }
+    .empty-state h3{
+      margin:0 0 10px;
+      font-size:28px;
+      font-family:'Playfair Display',serif;
+    }
+    .empty-state p{
+      margin:0;
+      color:var(--soft);
+      line-height:1.7;
+    }
+    .prompt-preview{
+      font-size:14px;
+      line-height:1.8;
+      color:#f0f0f8;
+      white-space:pre-wrap;
+      width:100%;
+    }
+    .output-box,.stack-card,.gallery-card{
+      margin-top:16px;
+      background:#0d0f16;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:14px;
+    }
+    .output-box p,.stack-card p,.gallery-card p{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      font-weight:800;
+    }
+    .output-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .prompt-tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .prompt-tab{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      background:#12141d;
+      color:#ddd;
+      font-size:11px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      cursor:pointer;
+    }
+    .prompt-tab.active{
+      background:linear-gradient(90deg,var(--blue),var(--gold));
+      border-color:transparent;
+      color:#fff;
+    }
+    .prompt-box{
+      min-height:110px;
+      white-space:pre-wrap;
+      line-height:1.7;
+      font-size:13px;
+      color:#ececf8;
+    }
+    .list{
+      display:grid;
+      gap:10px;
+      max-height:220px;
+      overflow:auto;
+      padding-right:4px;
+    }
+    .list-item{
+      background:#11131b;
+      border:1px solid rgba(255,255,255,.06);
+      padding:12px;
+      border-radius:14px;
+      color:#ddd;
+      font-size:12px;
+      line-height:1.55;
+    }
+    .saved-item{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .saved-text{
+      flex:1;
+      min-width:0;
+      word-break:break-word;
+    }
+    .star-btn{
+      flex:0 0 auto;
+      background:transparent;
+      border:none;
+      color:#7f7f98;
+      font-size:18px;
+      cursor:pointer;
+      padding:0;
+      line-height:1;
+    }
+    .star-btn.active{
+      color:var(--gold);
+      text-shadow:0 0 12px rgba(245,158,11,.35);
+    }
+
+    .inspo-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:10px;
+    }
+    .inspo-card{
+      background:#11131b;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:12px;
+      min-height:110px;
+    }
+    .inspo-card h4{
+      margin:0 0 8px;
+      font-size:13px;
+      color:#fff;
+    }
+    .inspo-card span{
+      display:block;
+      color:var(--soft);
+      font-size:11px;
+      line-height:1.5;
+    }
+    footer{
+      max-width:1480px;
+      margin:0 auto;
+      padding:0 24px 30px;
+      color:#777b92;
+      font-size:12px;
+    }
+
+    @media (max-width:1200px){
+      .app{grid-template-columns:1fr}
+      .preview-box{min-height:360px;max-height:none}
+      .inspo-grid{grid-template-columns:repeat(2,1fr)}
+      .tutorial-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:720px){
+      .app{padding:16px}
+      .grid-2,.btn-row,.btn-row-3{grid-template-columns:1fr}
+      .btn{
+        padding:16px;
+        font-size:14px;
+      }
+      .btn-row-3{
+        grid-template-columns:1fr;
+      }
+      .helper-box{
+        font-size:12px;
+      }
+      .preview-box{
+        min-height:280px;
+      }
+      .inspo-grid{grid-template-columns:1fr}
+      .preset-card-grid{grid-template-columns:1fr}
+      .brand{font-size:24px}
+      select,input[type='text'],textarea{
+        min-height:52px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="brand">GlamorousGrammyGlowUp</div>
+      <div class="sub">Luxury lips prompt generator</div>
+    </div>
+    <div class="tag">Glam Is The Standard</div>
+  </header>
+
+  <main class="app">
+    <section class="panel">
+      <div class="intro-card">
+        <h2>Fillable base for your lip art style</h2>
+        <p>Built from your inspo: metallic lips, word art, embedded objects, crowns, grills, dripping gloss, split colors, gem textures, smoke, glam symbols, and luxury editorial vibes.</p>
+      </div>
+
+      <div class="tutorial-card">
+        <h3>3-Step Glam Tutorial</h3>
+        <div class="tutorial-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h4>Build Your Look</h4>
+            <p>Pick your lip style, colors, finish, textures, wording, object, and drip style.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h4>Generate the Prompt</h4>
+            <p>Click the main button. Your full glam prompt shows below and inside the preview panel.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h4>Create the Image</h4>
+            <p>Use ChatGPT first. Paste the helper text into ChatGPT and generate the image.</p>
+          </div>
+        </div>
+
+        <div class="tool-list">
+          <div class="tool-item">
+            <strong>Recommended: ChatGPT</strong>
+            <span>Best pick for this generator. Use the “Copy for ChatGPT” button and paste it right into chat.</span>
+          </div>
+          <div class="tool-item">
+            <strong>Other option: Bing / Copilot</strong>
+            <span>Use the “Copy for Bing” button. It gives you a Bing-style ready prompt.</span>
+          </div>
+          <div class="tool-item">
+            <strong>Best beginner move</strong>
+            <span>Start with a preset, generate the prompt, copy for ChatGPT, then tweak only one thing at a time.</span>
+          </div>
+        </div>
+
+        <div class="helper-card">
+          <p>One-click helper preview</p>
+          <div class="helper-box" id="helperBox">Generate a prompt first, then this box will build a ready-to-paste ChatGPT or Bing command for you.</div>
+          <div class="btn-row-3">
+            <button class="btn btn-ghost" type="button" onclick="copyPromptOnly()">Copy Prompt Only</button>
+            <button class="btn btn-secondary" type="button" onclick="copyForChatGPT()">Copy for ChatGPT</button>
+            <button class="btn btn-secondary" type="button" onclick="copyForBing()">Copy for Bing</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-title">Visual Preset Cards</p>
+      <div class="preset-card-grid">
+        <div class="preset-card" onclick="applyPreset('queenNeon')">
+          <span class="preset-badge">Preset Card</span>
+          <h4>Queen Neon</h4>
+          <p>Glossy red queen energy with crown accents, bright shine, and bold glam drama.</p>
+        </div>
+        <div class="preset-card" onclick="applyPreset('heelInMouth')">
+          <span class="preset-badge">Preset Card</span>
+          <h4>Heel in Mouth</h4>
+          <p>Hot pink chrome lips with grillz and a luxury stiletto centerpiece inside the mouth.</p>
+        </div>
+        <div class="preset-card" onclick="applyPreset('bikerChrome')">
+          <span class="preset-badge">Preset Card</span>
+          <h4>Biker Chrome</h4>
+          <p>Black chrome lips, motorcycle glam, metallic panels, and hard-edged luxury attitude.</p>
+        </div>
+        <div class="preset-card" onclick="applyPreset('faithIridescent')">
+          <span class="preset-badge">Preset Card</span>
+          <h4>Faith Glam</h4>
+          <p>Iridescent faith-inspired lips with jeweled cross details and soft crystal luxury.</p>
+        </div>
+        <div class="preset-card" onclick="applyPreset('royalBlue')">
+          <span class="preset-badge">Preset Card</span>
+          <h4>Royal Blue Luxe</h4>
+          <p>Royal blue and gold glam with crisp shine, crown energy, and luxe beauty-ad polish.</p>
+        </div>
+        <div class="preset-card" onclick="applyPreset('rockStar')">
+          <span class="preset-badge">Preset Card</span>
+          <h4>Rockstar Red</h4>
+          <p>Deep red rockstar lips with bold poster drama, loud styling, and performance energy.</p>
+        </div>
+      </div>
+
+      <p class="section-title">Preset Quick-Fill Buttons</p>
+      <div class="quickfill-bar" style="margin-bottom:16px;">
+        <button class="quickfill-btn" type="button" onclick="applyPreset('queenNeon')">Queen Neon</button>
+        <button class="quickfill-btn" type="button" onclick="applyPreset('heelInMouth')">Heel in Mouth</button>
+        <button class="quickfill-btn" type="button" onclick="applyPreset('bikerChrome')">Biker Chrome</button>
+        <button class="quickfill-btn" type="button" onclick="applyPreset('faithIridescent')">Faith Glam</button>
+        <button class="quickfill-btn" type="button" onclick="applyPreset('royalBlue')">Royal Blue Luxe</button>
+        <button class="quickfill-btn" type="button" onclick="applyPreset('rockStar')">Rockstar Red</button>
+      </div>
+
+      <p class="section-title">Style Packs</p>
+      <div class="style-bar" id="styleBar">
+        <button class="style-btn" type="button" onclick="applyPreset('luxuryGold', this)">Luxury Gold</button>
+        <button class="style-btn" type="button" onclick="applyPreset('queenNeon', this)">Queen Neon</button>
+        <button class="style-btn" type="button" onclick="applyPreset('rockStar', this)">Rock Star</button>
+        <button class="style-btn" type="button" onclick="applyPreset('bikerChrome', this)">Biker Chrome</button>
+        <button class="style-btn" type="button" onclick="applyPreset('faithIridescent', this)">Faith Iridescent</button>
+        <button class="style-btn" type="button" onclick="applyPreset('royalBlue', this)">Royal Blue</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-secondary" type="button" onclick="randomizeStyle()">Randomize Style</button>
+        <button class="btn btn-ghost" type="button" onclick="loadLatestSaved()">Load Last Saved</button>
+      </div>
+
+      <div class="grid-2" style="margin-top:14px">
+        <div class="field"><label for="lipStyle">Lip Style</label><select id="lipStyle"></select></div>
+        <div class="field"><label for="baseStyle">Base Style</label><select id="baseStyle"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="lipShape">Lip Shape</label><select id="lipShape"></select></div>
+        <div class="field"><label for="dripStyle">Drip Style</label><select id="dripStyle"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="mainColor">Main Color</label><select id="mainColor"></select></div>
+        <div class="field"><label for="secondaryColor">Secondary Color</label><select id="secondaryColor"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="finish">Finish</label><select id="finish"></select></div>
+        <div class="field"><label for="surfaceTexture">Surface Texture</label><select id="surfaceTexture"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="patternDetail">Pattern / Detailing</label><select id="patternDetail"></select></div>
+        <div class="field"><label for="embeddedObject">Embedded Object</label><select id="embeddedObject"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="wording">Text / Wording</label><select id="wording"></select></div>
+        <div class="field"><label for="textStyle">Text Style</label><select id="textStyle"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="accentElement">Accent Element</label><select id="accentElement"></select></div>
+        <div class="field"><label for="extraDetail">Extra Detail</label><select id="extraDetail"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="mouthDetail">Teeth / Mouth Detail</label><select id="mouthDetail"></select></div>
+        <div class="field"><label for="backgroundMood">Background Mood</label><select id="backgroundMood"></select></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field"><label for="lighting">Lighting</label><select id="lighting"></select></div>
+        <div class="field"><label for="cameraAngle">Camera Angle</label><select id="cameraAngle"></select></div>
+      </div>
+
+      <div class="field">
+        <label for="customWord">Custom Word or Phrase</label>
+        <input id="customWord" type="text" placeholder="Example: Queen, Ride or Die, Glam Boss, Faith, Royal Glow" />
+      </div>
+
+      <div class="field">
+        <label for="customNotes">Extra Creative Direction</label>
+        <textarea id="customNotes" placeholder="Example: black woman luxury vibe, bold editorial, dramatic drips, centered composition, clean expensive metal details"></textarea>
+      </div>
+
+      <div class="checkline"><input id="useCustomWord" type="checkbox" checked><span>Use custom word in the prompt</span></div>
+      <div class="checkline"><input id="splitColorMode" type="checkbox"><span>Enable split-color lip style</span></div>
+      <div class="checkline"><input id="hyperDetail" type="checkbox" checked><span>Use hyper-detailed luxury rendering</span></div>
+      <div class="checkline"><input id="transparentBg" type="checkbox"><span>Force transparent background</span></div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" type="button" onclick="generatePrompt()">Generate Glam Prompt</button>
+        <button class="btn btn-secondary" type="button" onclick="copyPromptOnly()">Copy Prompt Only</button>
+      </div>
+
+      <div class="btn-row-3">
+        <button class="btn btn-ghost" type="button" onclick="savePrompt()">Save Prompt</button>
+        <button class="btn btn-ghost" type="button" onclick="exportPrompts()">Export Prompts</button>
+        <button class="btn btn-ghost" type="button" onclick="clearSavedPrompts()">Clear Saved</button>
+      </div>
+
+      <div class="status" id="status"></div>
+
+      <div class="output-box">
+        <div class="output-head">
+          <p style="margin:0;">Active Prompt</p>
+        </div>
+
+        <div class="prompt-tabs">
+          <button class="prompt-tab active" type="button" onclick="setPromptTab('promptOnly', this)">Prompt Only</button>
+          <button class="prompt-tab" type="button" onclick="setPromptTab('chatgpt', this)">ChatGPT Version</button>
+          <button class="prompt-tab" type="button" onclick="setPromptTab('bing', this)">Bing Version</button>
+        </div>
+
+        <div class="prompt-box" id="promptBox">Your new luxury lip prompt will show up here.</div>
+      </div>
+
+      <div class="stack-card">
+        <p>Saved Prompt Library</p>
+        <div class="list" id="savedList"></div>
+      </div>
+
+      <div class="stack-card">
+        <p>Prompt History</p>
+        <div class="list" id="historyList"></div>
+      </div>
+
+      <div class="stack-card">
+        <p>Debug Tests</p>
+        <div class="mini-bar"><button class="mini-btn" type="button" onclick="runTests()">Run Self Tests</button></div>
+        <div class="list" id="testsList" style="margin-top:10px"></div>
+      </div>
+    </section>
+
+    <section class="preview-wrap">
+      <p class="section-title">Prompt Preview</p>
+      <div class="chip-row" id="selectionChips"></div>
+
+      <div class="preview-box" id="previewBox">
+        <div class="empty-state">
+          <h3>No prompt yet</h3>
+          <p>Pick the details, hit generate, and this box will show your full fillable prompt base. This version is prompt-only and ready to fold into your other HTML tool.</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <p>New details pulled from your inspo</p>
+        <div class="inspo-grid">
+          <div class="inspo-card"><h4>Metal + Melt</h4><span>Gold chrome, liquid metal watch drips, mirror shine, molten luxury.</span></div>
+          <div class="inspo-card"><h4>Word Art Lips</h4><span>Script lettering, bold phrase placement, lip typography, glam captions.</span></div>
+          <div class="inspo-card"><h4>Embedded Objects</h4><span>Heels, motorcycles, lipstick bullets, diamonds, crosses, watches, guitars, chains, perfume, rings, cherries.</span></div>
+          <div class="inspo-card"><h4>Royal Symbols</h4><span>Crowns, jeweled accents, queen energy, rich statement composition.</span></div>
+          <div class="inspo-card"><h4>Split Colors</h4><span>Red and blue, pink and black, lavender and aqua, dual-tone glam.</span></div>
+          <div class="inspo-card"><h4>Texture Play</h4><span>Glitter, rhinestones, metallic trim, geometric edges, script etching.</span></div>
+          <div class="inspo-card"><h4>Smoke + Mood</h4><span>Neon haze, soft smoke, dark glam backdrop, moody contrast.</span></div>
+          <div class="inspo-card"><h4>Editorial Finish</h4><span>Macro close-up, crisp shine, premium beauty ad, creator-brand worthy.</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>GlamorousGrammyGlowUp • Where AI Meets Glam • Fillable luxury lip art prompt system</footer>
+
+  <script>
+    const schema = {
+      lipStyle:[
+        "luxury glam",
+        "soft glam",
+        "editorial chrome",
+        "pop art",
+        "biker glam",
+        "queen glam",
+        "faith glam",
+        "rock star glam",
+        "Barbie glam",
+        "royal blue luxury"
+      ],
+      baseStyle:[
+        "ultra luxury editorial lip art",
+        "glossy 3D glam lip illustration",
+        "hyper realistic luxury beauty ad lips",
+        "chrome sculpted fantasy lips",
+        "blinged-out pop art lips",
+        "high fashion macro lip portrait",
+        "luxury digital product cover lips",
+        "bold glam poster-style lips"
+      ],
+      lipShape:[
+        "full plush lips",
+        "heart-shaped lips",
+        "overlined glam lips",
+        "round soft volume lips",
+        "sharp sculpted lips",
+        "open mouth lips with tongue showing",
+        "parted lips with visible teeth",
+        "wide editorial pout"
+      ],
+      dripStyle:[
+        "dramatic liquid drips",
+        "soft glossy drips",
+        "no drips",
+        "bottom drips only",
+        "glossy syrup drips",
+        "metallic melt drips",
+        "paint splash drips"
+      ],
+      mainColor:[
+        "metallic gold",
+        "royal blue",
+        "hot pink",
+        "deep red",
+        "black chrome",
+        "rose gold",
+        "lavender iridescent",
+        "ruby red",
+        "midnight black",
+        "fuchsia glow",
+        "hot pink chrome",
+        "rose chrome pink",
+        "metallic magenta"
+      ],
+      secondaryColor:[
+        "diamond white",
+        "champagne gold",
+        "electric blue",
+        "soft aqua",
+        "candy pink",
+        "gloss black",
+        "icy silver",
+        "ruby sparkle",
+        "purple holographic",
+        "none"
+      ],
+      finish:[
+        "high gloss lacquer finish",
+        "mirror chrome finish",
+        "liquid metal finish",
+        "diamond dust shimmer finish",
+        "soft satin glow finish",
+        "wet candy finish",
+        "iridescent pearl finish",
+        "glass shine finish",
+        "mirror chrome shine",
+        "liquid candy gloss"
+      ],
+      surfaceTexture:[
+        "rhinestone texture",
+        "smooth glass texture",
+        "etched metallic texture",
+        "fine glitter texture",
+        "script engraved texture",
+        "geometric plated texture",
+        "foil-wrapped texture",
+        "velvet shimmer texture",
+        "chrome mosaic texture",
+        "mirror tile texture"
+      ],
+      patternDetail:[
+        "ornate gold scrollwork",
+        "checkerboard glam panels",
+        "Greek key trim",
+        "luxury script overlays",
+        "galaxy sparkle scatter",
+        "diamond border inlays",
+        "metallic striping",
+        "clean minimal glam",
+        "rockstar badge detailing",
+        "chrome geometric panel pattern",
+        "mirror tile lip pattern",
+        "luxury chrome mosaic"
+      ],
+      embeddedObject:[
+        "melting gold watch",
+        "stiletto heel centerpiece",
+        "large faceted diamond",
+        "chrome motorcycle",
+        "gold lipstick bullet",
+        "jeweled cross",
+        "electric guitar accent",
+        "crown jewel emblem",
+        "luxury grillz details",
+        "butterfly accents",
+        "diamond ring",
+        "butterfly charm",
+        "luxury watch",
+        "money stack",
+        "cherry fruit",
+        "perfume bottle",
+        "crown jewel",
+        "grillz letters",
+        "gold chain",
+        "gold stiletto heel inside mouth",
+        "luxury heel centerpiece",
+        "diamond heel charm"
+      ],
+      wording:[
+        "Queen",
+        "Ride or Die",
+        "Glam Boss",
+        "Royal Glow",
+        "Faith",
+        "Bold",
+        "Luxury",
+        "none"
+      ],
+      textStyle:[
+        "oversized glitter script lettering",
+        "clean serif luxury text",
+        "engraved metallic wordmark",
+        "gothic grill lettering",
+        "neon sign typography",
+        "dripping gold script",
+        "bold editorial type treatment"
+      ],
+      accentElement:[
+        "jeweled crown",
+        "floating crystals",
+        "smoky aura",
+        "tiny spark stars",
+        "diamond droplets",
+        "metal ring details",
+        "studded trim",
+        "glossy pearls",
+        "mini butterflies"
+      ],
+      extraDetail:[
+        "luxury nose jewelry visible above the lips",
+        "perfect white teeth",
+        "tongue covered in crystal texture",
+        "visible metallic grillz",
+        "thick molten drips hanging from the lips",
+        "clean reflective highlights",
+        "centered hero composition",
+        "high-end poster-worthy finish",
+        "open mouth glam pose"
+      ],
+      mouthDetail:[
+        "bright white natural teeth",
+        "diamond grillz",
+        "rose gold grillz",
+        "slightly open mouth with glossy tongue",
+        "visible tongue with gemstone texture",
+        "bite pose with lower lip pulled down",
+        "clean open mouth with deep shadow",
+        "open mouth glam pose"
+      ],
+      backgroundMood:[
+        "pure black luxury backdrop",
+        "white clean studio backdrop",
+        "neon red frame glow",
+        "soft smoke haze",
+        "dark glam gradient backdrop",
+        "subtle sparkles floating around",
+        "beauty ad seamless background",
+        "dramatic concert-poster mood",
+        "transparent background"
+      ],
+      lighting:[
+        "high contrast editorial lighting",
+        "luxury beauty lighting",
+        "neon glow rim light",
+        "crisp commercial lighting",
+        "moody spotlight lighting",
+        "diamond sparkle highlights",
+        "chrome reflection lighting",
+        "soft glam studio lighting",
+        "macro beauty lighting"
+      ],
+      cameraAngle:[
+        "extreme macro close-up",
+        "straight-on beauty shot",
+        "tight centered composition",
+        "slightly low angle close-up",
+        "front-facing editorial crop",
+        "magazine-cover framing",
+        "luxury beauty macro shot"
+      ]
+    };
+
+    const presetValues = {
+      luxuryGold:{
+        lipStyle:"luxury glam",
+        baseStyle:"hyper realistic luxury beauty ad lips",
+        mainColor:"metallic gold",
+        secondaryColor:"champagne gold",
+        finish:"liquid metal finish",
+        surfaceTexture:"etched metallic texture",
+        patternDetail:"ornate gold scrollwork",
+        embeddedObject:"melting gold watch",
+        wording:"Luxury",
+        textStyle:"dripping gold script",
+        accentElement:"mini butterflies",
+        extraDetail:"luxury nose jewelry visible above the lips",
+        mouthDetail:"bright white natural teeth",
+        backgroundMood:"dark glam gradient backdrop",
+        lighting:"chrome reflection lighting",
+        cameraAngle:"extreme macro close-up",
+        dripStyle:"metallic melt drips"
+      },
+      queenNeon:{
+        lipStyle:"queen glam",
+        baseStyle:"glossy 3D glam lip illustration",
+        mainColor:"deep red",
+        secondaryColor:"diamond white",
+        finish:"high gloss lacquer finish",
+        surfaceTexture:"fine glitter texture",
+        patternDetail:"clean minimal glam",
+        embeddedObject:"large faceted diamond",
+        wording:"Queen",
+        textStyle:"neon sign typography",
+        accentElement:"jeweled crown",
+        extraDetail:"thick molten drips hanging from the lips",
+        mouthDetail:"bright white natural teeth",
+        backgroundMood:"neon red frame glow",
+        lighting:"diamond sparkle highlights",
+        cameraAngle:"tight centered composition",
+        dripStyle:"dramatic liquid drips"
+      },
+      rockStar:{
+        lipStyle:"rock star glam",
+        baseStyle:"bold glam poster-style lips",
+        mainColor:"deep red",
+        secondaryColor:"gloss black",
+        finish:"wet candy finish",
+        surfaceTexture:"fine glitter texture",
+        patternDetail:"rockstar badge detailing",
+        embeddedObject:"electric guitar accent",
+        wording:"Bold",
+        textStyle:"bold editorial type treatment",
+        accentElement:"smoky aura",
+        extraDetail:"centered hero composition",
+        mouthDetail:"clean open mouth with deep shadow",
+        backgroundMood:"dramatic concert-poster mood",
+        lighting:"high contrast editorial lighting",
+        cameraAngle:"straight-on beauty shot",
+        dripStyle:"paint splash drips"
+      },
+      bikerChrome:{
+        lipStyle:"biker glam",
+        baseStyle:"chrome sculpted fantasy lips",
+        mainColor:"black chrome",
+        secondaryColor:"champagne gold",
+        finish:"mirror chrome finish",
+        surfaceTexture:"geometric plated texture",
+        patternDetail:"checkerboard glam panels",
+        embeddedObject:"chrome motorcycle",
+        wording:"Ride or Die",
+        textStyle:"gothic grill lettering",
+        accentElement:"diamond droplets",
+        extraDetail:"visible metallic grillz",
+        mouthDetail:"rose gold grillz",
+        backgroundMood:"pure black luxury backdrop",
+        lighting:"crisp commercial lighting",
+        cameraAngle:"front-facing editorial crop",
+        dripStyle:"bottom drips only"
+      },
+      faithIridescent:{
+        lipStyle:"faith glam",
+        baseStyle:"ultra luxury editorial lip art",
+        mainColor:"lavender iridescent",
+        secondaryColor:"soft aqua",
+        finish:"iridescent pearl finish",
+        surfaceTexture:"smooth glass texture",
+        patternDetail:"metallic striping",
+        embeddedObject:"jeweled cross",
+        wording:"Faith",
+        textStyle:"clean serif luxury text",
+        accentElement:"floating crystals",
+        extraDetail:"high-end poster-worthy finish",
+        mouthDetail:"slightly open mouth with glossy tongue",
+        backgroundMood:"beauty ad seamless background",
+        lighting:"soft glam studio lighting",
+        cameraAngle:"magazine-cover framing",
+        dripStyle:"soft glossy drips"
+      },
+      royalBlue:{
+        lipStyle:"royal blue luxury",
+        baseStyle:"high fashion macro lip portrait",
+        mainColor:"royal blue",
+        secondaryColor:"champagne gold",
+        finish:"glass shine finish",
+        surfaceTexture:"etched metallic texture",
+        patternDetail:"Greek key trim",
+        embeddedObject:"crown jewel emblem",
+        wording:"Royal Glow",
+        textStyle:"engraved metallic wordmark",
+        accentElement:"studded trim",
+        extraDetail:"clean reflective highlights",
+        mouthDetail:"diamond grillz",
+        backgroundMood:"pure black luxury backdrop",
+        lighting:"luxury beauty lighting",
+        cameraAngle:"extreme macro close-up",
+        dripStyle:"no drips"
+      },
+      heelInMouth:{
+        lipStyle:"Barbie glam",
+        baseStyle:"hyper realistic luxury beauty ad lips",
+        mainColor:"hot pink chrome",
+        secondaryColor:"champagne gold",
+        finish:"high gloss lacquer finish",
+        surfaceTexture:"geometric plated texture",
+        patternDetail:"chrome geometric panel pattern",
+        embeddedObject:"gold stiletto heel inside mouth",
+        wording:"Luxury",
+        textStyle:"engraved metallic wordmark",
+        accentElement:"diamond droplets",
+        extraDetail:"perfect white teeth",
+        mouthDetail:"diamond grillz",
+        backgroundMood:"white clean studio backdrop",
+        lighting:"macro beauty lighting",
+        cameraAngle:"luxury beauty macro shot",
+        dripStyle:"no drips"
+      }
+    };
+
+    const state = {
+      savedPrompts: [],
+      promptHistory: [],
+      currentPromptRaw: "",
+      currentPromptTab: "promptOnly"
+    };
+
+    function $(id){
+      return document.getElementById(id);
+    }
+
+    function setStatus(message = "", type = ""){
+      const el = $("status");
+      el.textContent = message;
+      el.className = type ? `status ${type}` : "status";
+    }
+
+    function fillSelect(id, values){
+      const el = $(id);
+      el.innerHTML = "";
+      values.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        el.appendChild(option);
+      });
+    }
+
+    function initFields(){
+      Object.keys(schema).forEach(key => fillSelect(key, schema[key]));
+      updateChips();
+      renderSaved();
+      renderHistory();
+      updateHelperBox("");
+      updatePromptOutput();
+    }
+
+    function getSelections(){
+      return {
+        lipStyle: $("lipStyle").value,
+        baseStyle: $("baseStyle").value,
+        lipShape: $("lipShape").value,
+        dripStyle: $("dripStyle").value,
+        mainColor: $("mainColor").value,
+        secondaryColor: $("secondaryColor").value,
+        finish: $("finish").value,
+        surfaceTexture: $("surfaceTexture").value,
+        patternDetail: $("patternDetail").value,
+        embeddedObject: $("embeddedObject").value,
+        wording: $("wording").value,
+        textStyle: $("textStyle").value,
+        accentElement: $("accentElement").value,
+        extraDetail: $("extraDetail").value,
+        mouthDetail: $("mouthDetail").value,
+        backgroundMood: $("backgroundMood").value,
+        lighting: $("lighting").value,
+        cameraAngle: $("cameraAngle").value,
+        customWord: $("customWord").value.trim(),
+        customNotes: $("customNotes").value.trim(),
+        useCustomWord: $("useCustomWord").checked,
+        splitColorMode: $("splitColorMode").checked,
+        hyperDetail: $("hyperDetail").checked,
+        transparentBg: $("transparentBg").checked
+      };
+    }
+
+    function buildPrompt(s){
+      const phrase = s.useCustomWord && s.customWord ? s.customWord : s.wording;
+
+      const colorLine = s.splitColorMode
+        ? `The lips use a split-color palette with ${s.mainColor} blended against ${s.secondaryColor}.`
+        : `The primary lip color is ${s.mainColor}${s.secondaryColor !== "none" ? ` with accents of ${s.secondaryColor}` : ""}.`;
+
+      const dripLine = s.dripStyle === "no drips"
+        ? "Do not include any drips. Keep the lips clean and polished."
+        : `Use ${s.dripStyle} on the lips and attached elements.`;
+
+      const detailLine = s.hyperDetail
+        ? "Render with hyper-detailed textures, crisp luxury reflections, premium materials, sharp edges, creator-brand worthy polish, and high-end editorial finish."
+        : "Render with clean glam detail and polished beauty-ad quality.";
+
+      const bgLine = s.transparentBg
+        ? "Use a transparent background, isolated subject, no backdrop, PNG-style cutout look, no environment."
+        : `Background mood: ${s.backgroundMood}.`;
+
+      return `Create a ${s.lipStyle} look in a ${s.baseStyle} featuring ${s.lipShape}. ${colorLine} Use a ${s.finish} with ${s.surfaceTexture} and ${s.patternDetail}. Integrate ${s.embeddedObject} as the hero centerpiece. Add ${phrase !== "none" ? `${phrase} in ${s.textStyle}` : "no visible wording"}. Include ${s.accentElement} and ${s.extraDetail}. Show ${s.mouthDetail}. ${bgLine} Lighting: ${s.lighting}. Camera angle: ${s.cameraAngle}. ${dripLine} ${detailLine}${s.customNotes ? ` Extra creative direction: ${s.customNotes}.` : ""}`;
+    }
+
+    function buildChatGPTHelper(prompt){
+      return `Create a high-quality image using this prompt:\n\n${prompt}`;
+    }
+
+    function buildBingHelper(prompt){
+      return `Create an image with this prompt: ${prompt}`;
+    }
+
+    function updateHelperBox(text){
+      $("helperBox").textContent = text || "Generate a prompt first, then this box will build a ready-to-paste ChatGPT or Bing command for you.";
+    }
+
+    function updatePreview(prompt){
+      const box = $("previewBox");
+      if (!prompt) {
+        box.innerHTML = `
+          <div class="empty-state">
+            <h3>No prompt yet</h3>
+            <p>Pick the details, hit generate, and this box will show your full fillable prompt base. This version is prompt-only and ready to fold into your other HTML tool.</p>
+          </div>
+        `;
+        return;
+      }
+      box.innerHTML = `<div class="prompt-preview"></div>`;
+      box.querySelector(".prompt-preview").textContent = prompt;
+    }
+
+    function updateChips(){
+      const s = getSelections();
+      const wrap = $("selectionChips");
+      wrap.innerHTML = "";
+      [
+        s.lipStyle,
+        s.mainColor,
+        s.dripStyle,
+        s.embeddedObject,
+        s.wording !== "none" ? s.wording : "No Text",
+        s.transparentBg ? "Transparent BG On" : "Transparent BG Off"
+      ].forEach(text => {
+        const d = document.createElement("div");
+        d.className = "chip";
+        d.textContent = text;
+        wrap.appendChild(d);
+      });
+    }
+
+    function getActivePrompt(){
+      if (!state.currentPromptRaw) return "";
+      if (state.currentPromptTab === "chatgpt") return buildChatGPTHelper(state.currentPromptRaw);
+      if (state.currentPromptTab === "bing") return buildBingHelper(state.currentPromptRaw);
+      return state.currentPromptRaw;
+    }
+
+    function updatePromptOutput(){
+      $("promptBox").textContent = getActivePrompt() || "Your new luxury lip prompt will show up here.";
+    }
+
+    function setPromptTab(tabName, btn){
+      state.currentPromptTab = tabName;
+      document.querySelectorAll(".prompt-tab").forEach(tab => tab.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      updatePromptOutput();
+    }
+
+    function generatePrompt(){
+      const prompt = buildPrompt(getSelections());
+      state.currentPromptRaw = prompt;
+      updatePromptOutput();
+      updatePreview(prompt);
+      updateHelperBox(buildChatGPTHelper(prompt));
+      state.promptHistory.unshift(prompt);
+      state.promptHistory = state.promptHistory.slice(0, 20);
+      renderHistory();
+      updateChips();
+      setStatus("Prompt generated.", "success");
+    }
+
+    function fallbackCopy(text){
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      const ok = document.execCommand("copy");
+      ta.remove();
+      if (!ok) throw new Error("copy failed");
+    }
+
+    function copyText(text, successMessage){
+      try{
+        fallbackCopy(text);
+        setStatus(successMessage, "success");
+      }catch(e){
+        setStatus("Copy is blocked here. Highlight the text and press Ctrl+C.", "error");
+      }
+    }
+
+    function copyPromptOnly(){
+      if (!state.currentPromptRaw) {
+        setStatus("Nothing to copy yet.", "error");
+        return;
+      }
+      state.currentPromptTab = "promptOnly";
+      document.querySelectorAll(".prompt-tab").forEach(tab => tab.classList.remove("active"));
+      document.querySelectorAll(".prompt-tab")[0].classList.add("active");
+      updatePromptOutput();
+      updateHelperBox(state.currentPromptRaw);
+      copyText(state.currentPromptRaw, "Prompt copied.");
+    }
+
+    function copyForChatGPT(){
+      if (!state.currentPromptRaw) {
+        setStatus("Generate a prompt first.", "error");
+        return;
+      }
+      const helper = buildChatGPTHelper(state.currentPromptRaw);
+      state.currentPromptTab = "chatgpt";
+      document.querySelectorAll(".prompt-tab").forEach(tab => tab.classList.remove("active"));
+      document.querySelectorAll(".prompt-tab")[1].classList.add("active");
+      updatePromptOutput();
+      updateHelperBox(helper);
+      copyText(helper, "ChatGPT helper copied.");
+    }
+
+    function copyForBing(){
+      if (!state.currentPromptRaw) {
+        setStatus("Generate a prompt first.", "error");
+        return;
+      }
+      const helper = buildBingHelper(state.currentPromptRaw);
+      state.currentPromptTab = "bing";
+      document.querySelectorAll(".prompt-tab").forEach(tab => tab.classList.remove("active"));
+      document.querySelectorAll(".prompt-tab")[2].classList.add("active");
+      updatePromptOutput();
+      updateHelperBox(helper);
+      copyText(helper, "Bing helper copied.");
+    }
+
+    function savePrompt(){
+      const text = state.currentPromptRaw.trim();
+      if (!text) {
+        setStatus("Generate a prompt first.", "error");
+        return;
+      }
+
+      const existing = state.savedPrompts.find(item => item.text === text);
+      if (existing) {
+        setStatus("Prompt already saved.", "success");
+        return;
+      }
+
+      state.savedPrompts.unshift({
+        text,
+        favorite:false
+      });
+      state.savedPrompts = state.savedPrompts.slice(0, 50);
+      renderSaved();
+      setStatus("Prompt saved.", "success");
+    }
+
+    function toggleFavorite(index){
+      if (!state.savedPrompts[index]) return;
+      state.savedPrompts[index].favorite = !state.savedPrompts[index].favorite;
+      renderSaved();
+      setStatus(state.savedPrompts[index].favorite ? "Prompt starred." : "Prompt unstarred.", "success");
+    }
+
+    function renderSaved(){
+      const wrap = $("savedList");
+      wrap.innerHTML = "";
+      if (!state.savedPrompts.length) {
+        wrap.innerHTML = '<div class="list-item">No saved prompts yet.</div>';
+        return;
+      }
+      state.savedPrompts.forEach((item, i) => {
+        const d = document.createElement("div");
+        d.className = "list-item";
+        d.innerHTML = `
+          <div class="saved-item">
+            <div class="saved-text">${item.favorite ? "⭐ " : ""}${i + 1}. ${escapeHtml(item.text)}</div>
+            <button class="star-btn ${item.favorite ? "active" : ""}" type="button" onclick="toggleFavorite(${i})" title="Favorite prompt">★</button>
+          </div>
+        `;
+        wrap.appendChild(d);
+      });
+    }
+
+    function renderHistory(){
+      const wrap = $("historyList");
+      wrap.innerHTML = "";
+      if (!state.promptHistory.length) {
+        wrap.innerHTML = '<div class="list-item">No prompt history yet.</div>';
+        return;
+      }
+      state.promptHistory.forEach((item, i) => {
+        const d = document.createElement("div");
+        d.className = "list-item";
+        d.textContent = `${i + 1}. ${item}`;
+        wrap.appendChild(d);
+      });
+    }
+
+    function exportPrompts(){
+      if (!state.savedPrompts.length) {
+        setStatus("Nothing to export yet.", "error");
+        return;
+      }
+      const blob = new Blob([state.savedPrompts.map(item => item.text).join("\n\n")], { type: "text/plain;charset=utf-8" });
+      const a = document.createElement("a");
+      const href = URL.createObjectURL(blob);
+      a.href = href;
+      a.download = "glam-lips-prompts.txt";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(href);
+      setStatus("Saved prompts exported.", "success");
+    }
+
+    function clearSavedPrompts(){
+      state.savedPrompts = [];
+      renderSaved();
+      setStatus("Saved prompts cleared.", "success");
+    }
+
+    function loadLatestSaved(){
+      if (!state.savedPrompts.length) {
+        setStatus("No saved prompts yet.", "error");
+        return;
+      }
+      const latest = state.savedPrompts[0].text;
+      state.currentPromptRaw = latest;
+      updatePromptOutput();
+      updatePreview(latest);
+      updateHelperBox(buildChatGPTHelper(latest));
+      setStatus("Latest saved prompt loaded.", "success");
+    }
+
+    function randomPick(arr, avoid){
+      if (arr.length === 1) return arr[0];
+      let pick = arr[Math.floor(Math.random() * arr.length)];
+      let guard = 0;
+      while (pick === avoid && guard < 10) {
+        pick = arr[Math.floor(Math.random() * arr.length)];
+        guard++;
+      }
+      return pick;
+    }
+
+    function randomizeStyle(){
+      Object.keys(schema).forEach(key => {
+        const el = $(key);
+        el.value = randomPick(schema[key], el.value);
+      });
+      $("splitColorMode").checked = Math.random() > .5;
+      $("hyperDetail").checked = true;
+      $("transparentBg").checked = Math.random() > .5;
+      updateChips();
+      setStatus("Style randomized.", "success");
+    }
+
+    function applyPreset(name, btn){
+      const preset = presetValues[name];
+      if (!preset) return;
+
+      document.querySelectorAll(".style-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      Object.keys(preset).forEach(key => {
+        if ($(key)) $(key).value = preset[key];
+      });
+
+      if (name === "queenNeon" || name === "rockStar" || name === "heelInMouth") $("splitColorMode").checked = true;
+      if (name === "heelInMouth") $("transparentBg").checked = false;
+      updateChips();
+      setStatus("Preset applied.", "success");
+    }
+
+    function escapeHtml(value){
+      return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    function addTest(name, pass, detail = ""){
+      const d = document.createElement("div");
+      d.className = "list-item";
+      d.style.color = pass ? "#c9ffd7" : "#ffbcbc";
+      d.textContent = `${pass ? "PASS" : "FAIL"} — ${name}${detail ? `: ${detail}` : ""}`;
+      $("testsList").appendChild(d);
+    }
+
+    function runTests(){
+      const box = $("testsList");
+      box.innerHTML = "";
+      addTest("schema loads", Array.isArray(schema.baseStyle) && schema.baseStyle.length > 0);
+      addTest("lipStyle exists", Array.isArray(schema.lipStyle) && schema.lipStyle.length > 0);
+      addTest("dripStyle exists", Array.isArray(schema.dripStyle) && schema.dripStyle.includes("no drips"));
+      addTest("transparent background option exists", schema.backgroundMood.includes("transparent background"));
+      addTest("embedded objects expanded", schema.embeddedObject.length >= 20, `count=${schema.embeddedObject.length}`);
+      addTest("heelInMouth preset exists", !!presetValues.heelInMouth);
+      const prompt = buildPrompt(getSelections());
+      addTest("buildPrompt returns string", typeof prompt === "string" && prompt.length > 40);
+      const chatgptHelper = buildChatGPTHelper("test prompt");
+      addTest("chatgpt helper builds", chatgptHelper.includes("Create a high-quality image"));
+      const bingHelper = buildBingHelper("test prompt");
+      addTest("bing helper builds", bingHelper.includes("Create an image with this prompt"));
+      $("dripStyle").value = "no drips";
+      const noDripPrompt = buildPrompt(getSelections());
+      addTest("no drips affects prompt", noDripPrompt.includes("Do not include any drips"));
+      $("transparentBg").checked = true;
+      const transparentPrompt = buildPrompt(getSelections());
+      addTest("transparent checkbox affects prompt", transparentPrompt.includes("transparent background"));
+      updatePreview("test preview");
+      addTest("preview updates", $("previewBox").textContent.includes("test preview"));
+      state.currentPromptRaw = "copy test";
+      addTest("copy helper functions exist", typeof copyPromptOnly === "function" && typeof copyForChatGPT === "function" && typeof copyForBing === "function");
+      randomizeStyle();
+      addTest("randomize keeps valid main color", schema.mainColor.includes($("mainColor").value));
+      setStatus("Self tests finished.", "success");
+    }
+
+    initFields();
+  </script>
+</body>
+</html>
