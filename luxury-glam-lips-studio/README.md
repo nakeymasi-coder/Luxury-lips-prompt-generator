@@ -1,4 +1,6 @@
-# 💋 Luxury Glam Lips Studio
+# 💋 Glam Lips Image Studio
+
+New image studio, separate from the paid Luxury Lip Generator App. Search for **Glam Lips Image Studio** to find this project.
 
 Standalone HTML landing-page draft saved from the Gemini chat on October 11, 2026.
 
